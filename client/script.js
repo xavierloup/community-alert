@@ -46,7 +46,7 @@ alertApp.config(function($routeProvider) {
             templateUrl : 'pages/report.html',
             controller  : 'reportController'
         })
-        
+
         // route for the about page
         .when('/about', {
             templateUrl : 'pages/about.html',
@@ -60,12 +60,12 @@ alertApp.controller('listController', function($scope, $http, $interval) {
         $http.get('/alerts').then(function(data) {
             console.log(data);
             $scope.alerts = data.data.payload;
-            $interval( function refresh(){
-                $scope.getAlerts();
-            }, 10000);
+            // $interval( function refresh(){
+            //     $scope.getAlerts();
+            // }, 10000);
         })
     }
-    
+
     // Manage list sorting
     $scope.sortProperty = 'creation_date';
     $scope.reverse = true;
@@ -73,7 +73,7 @@ alertApp.controller('listController', function($scope, $http, $interval) {
         $scope.reverse = ($scope.sortProperty === sortProperty) ? !$scope.reverse : false;
         $scope.sortProperty = sortProperty;
     };
-    
+
     // Load alerts on load
     $scope.getAlerts();
 });
